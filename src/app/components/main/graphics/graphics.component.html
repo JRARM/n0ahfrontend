@@ -1,0 +1,63 @@
+<section class="card text-white rounded blur-bg custom-form-bg">
+    <br>
+    <div class="card-body text-center ">
+        <h1>GRAFICAS TEMPORALES</h1>
+        
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+                [type]="barChartType"  >
+            </canvas>
+            </div>
+            <div class="col-sm-6">
+                <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+                [type]="barChartType"  >
+            </canvas>
+            </div>
+        </div>
+    </div>
+        <hr class="my-4" />
+        <br><br>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../../../../assets/img/Grafica.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Grafica 1</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">Gráficos de columnas. ...
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../../../../assets/img/Grafica2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Grafica 2</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">Gráficos circulares. ...
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../../../../assets/img/Grafica3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Grafica 3</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-body-secondary">Gráficos de líneas. ...
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</section>

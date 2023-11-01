@@ -1,23 +1,24 @@
+<app-navbar></app-navbar>
 <section class="card text-white rounded blur-bg custom-form-bg">
     <br>
     <div class="card-body text-center ">
         <h1>GRAFICAS TEMPORALES</h1>
-        
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
-                [type]="barChartType"  >
-            </canvas>
-            </div>
-            <div class="col-sm-6">
-                <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
-                [type]="barChartType"  >
-            </canvas>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
+                        [plugins]="barChartPlugins" [type]="barChartType">
+                    </canvas>
+                </div>
+                <div class="col-sm-6">
+                    <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
+                        [plugins]="barChartPlugins" [type]="barChartType">
+                    </canvas>
+                </div>
             </div>
         </div>
-    </div>
         <hr class="my-4" />
         <br><br>
         <div class="row row-cols-1 row-cols-md-3 g-4">

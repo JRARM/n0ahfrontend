@@ -7,12 +7,12 @@ import { GraphicsComponent } from './components/main/graphics/graphics.component
 import { ForgottenpasswordComponent } from './components/auth/forgottenpassword/forgottenpassword.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'iniciarsesion', component: LoginComponent },
-  { path: 'registrarse', component: RegisterComponent },
-  { path: 'olvidecontrasena', component: ForgottenpasswordComponent },
+  { path: '', title: 'N0ah', component: HomeComponent },
+  { path: 'iniciarsesion', title: 'N0ah - Inicio de Sesion', component: LoginComponent },
+  { path: 'registrarse', title: 'N0ah - Registro', component: RegisterComponent },
+  { path: 'olvidecontrasena', title: 'N0ah - Olvide Contraseña', component: ForgottenpasswordComponent },
 
-  { path: 'graficas', component: GraphicsComponent }
+  { path: 'graficas', title: 'N0ah - Graficas', component: GraphicsComponent }
 
 ];
 

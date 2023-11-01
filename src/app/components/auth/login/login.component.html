@@ -12,18 +12,23 @@
                     <div class="mb-3">
                         <!-- <label for="email" class="form-label text-white">Correo</label>   -->
                         <input type="email" class="rounded-4 form-control text-black custom-input" id="email"
-                            name="email" placeholder="Escribe tu correo" autofocus />
+                            name="email" placeholder="Escribe tu correo" autofocus [(ngModel)]="userLogin.email" />
                     </div>
                     <div class="mb-3">
                         <!--       <label for="password" class="form-label text-white">Contraseña</label> -->
                         <input type="password" class="rounded-4 form-control text-black custom-input" id="password"
-                            name="password" placeholder="Escribe tu contraseña" />
+                            name="password" placeholder="Escribe tu contraseña" [(ngModel)]="userLogin.password" />
                     </div>
-                    <button class="custom-button btn btn-secondary btn-block btn-center rounded-button"><i
-                            class="fas fa-sign-in-alt"></i> Ingresar</button>
+                    <button class="custom-button btn btn-secondary btn-block btn-center rounded-button"
+                        (click)="onSubmit()"><i class=" fas fa-sign-in-alt"></i> Ingresar</button>
                 </div>
-                <p class="text-center text-white">¿No tienes una cuenta? <a href="" class="text-info">Registrarse</a>
+                <p class="text-center text-white">¿Olvide la Contraseña? <a routerLink="/olvidecontrasena"
+                        class="text-info">Recuperar Contraseña</a>
                 </p>
+                <p class="text-center text-white">¿No tienes una cuenta? <a routerLink="/registrarse"
+                        class="text-info">Registrarse</a>
+                </p>
+
             </div>
         </div>
     </div> <br> <br>

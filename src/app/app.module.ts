@@ -13,6 +13,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     NgChartsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

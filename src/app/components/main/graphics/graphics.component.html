@@ -1,22 +1,57 @@
 <app-navbar></app-navbar>
-<section class="card text-white rounded blur-bg custom-form-bg">
+<section>
+    <div class="card text-white bg-primary">
+        <div class="card-header">
+            <h2>Busqueda de metricas por estudiante</h2>
+
+        </div>
+        <div class="card-body">
+            <label for="1">Ingrese el Nombre de usuario a Buscar</label>
+            <br>
+            <select name="asd" id="1">
+                <option value="a">asdasd</option>
+                <option value="b">asdasdasd</option>
+                <option value="c">asasdsadasd</option>
+            </select>
+            <div style="width: 700px; height: 400px;">
+                <canvas baseChart class="userActionschart" [data]="UserActionsbarChartData" [options]="barChartOptions"
+                    [plugins]="barChartPlugins" [type]="barChartType">
+                </canvas>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+
+<section class="card text-white bg-primary">
     <br>
     <div class="card-body text-center ">
         <h1>GRAFICAS TEMPORALES</h1>
-
+        <!-- https://ng-select.github.io/ng-select#/data-sources -->
 
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>
+                        Ingrese el nombre del estudiante a buscar?
+                    </h5>
+                    <input class="rounded-4 form-control text-black custom-input" type="text">
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
                         [plugins]="barChartPlugins" [type]="barChartType">
                     </canvas>
                 </div>
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions"
                         [plugins]="barChartPlugins" [type]="barChartType">
                     </canvas>
-                </div>
+                </div> -->
             </div>
         </div>
         <hr class="my-4" />

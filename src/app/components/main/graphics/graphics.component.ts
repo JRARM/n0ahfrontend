@@ -10,7 +10,15 @@ import { GraphicsService } from 'src/app/services/graphics.service';
 })
 export class GraphicsComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) userActionschart: BaseChartDirective | undefined;
   private incidents: any;
+  private userActions: any;
+  private userName = "Maria_Lugo_Cujar";
+  //ng select test
+
+
+
+
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -29,23 +37,45 @@ export class GraphicsComponent implements OnInit {
     },
     elements: {
       bar: {
-        backgroundColor: 'rgba(0, 0, 255, 0.5)', // Define el color de fondo de las barras
+        backgroundColor: 'rgba(216, 250, 8, 1)', // Define el color de fondo de las barras
       },
     },
   };
   public barChartType: ChartType = 'bar';
   public barChartPlugins = [DataLabelsPlugin];
 
-  public barChartData: ChartData<'bar'> = {
-    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
+  //useractions barchartdata init
+  public UserActionsbarChartData: ChartData<'bar'> = {
+    labels: ['0', '0', '0', '0', '0', '0', '0'],
     datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' }
+      { data: [0, 0, 0, 0, 0, 0, 0], label: 'Acciones de Usuario' }
+    ],
+  };
+
+
+  public barChartData: ChartData<'bar'> = {
+    labels: ['0', '0', '0', '0', '0', '0', '0'],
+    datasets: [
+      { data: [0, 0, 0, 0, 0, 0, 0], label: 'Cursos con mayores Incidencias de plagio' }
     ],
   };
   constructor(private graphicsService: GraphicsService) { }
   ngOnInit(): void {
     this.getincidentss();
+    this.getUserActivity();
   }
+
+  private getUserActivity(): void {
+    this.graphicsService.getUserAction({ userName: this.userName }).subscribe(data => {
+      console.log(data);
+      this.UserActionsbarChartData.labels = data.names;
+      this.UserActionsbarChartData.datasets[0].data = data.counts;
+      this.UserActionsbarChartData.datasets[0].label = 'Acciones de Usuario ' + this.userName;
+
+      this.userActionschart?.update();
+    });
+  }
+
   private getincidentss(): void {
     console.warn("entrando");
     this.graphicsService.getincidents().subscribe(data => {
@@ -62,19 +92,5 @@ export class GraphicsComponent implements OnInit {
 
 
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData.datasets[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      Math.round(Math.random() * 100),
-      56,
-      Math.round(Math.random() * 100),
-      40,
-    ];
-
-    this.chart?.update();
-  }
 
 }

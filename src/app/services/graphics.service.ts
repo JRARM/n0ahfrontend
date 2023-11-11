@@ -6,11 +6,15 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class GraphicsService {
-  private apiUrl = 'http://localhost:5000/api/v1/data/getincidents';
+  private apiUrl = 'http://localhost:5000/api/v1/';
   constructor(private http: HttpClient) { }
 
   getincidents(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl + "data/getincidents");
+  }
+
+  getUserAction(userName: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "charts/getuseractions", userName)
   }
 
 }

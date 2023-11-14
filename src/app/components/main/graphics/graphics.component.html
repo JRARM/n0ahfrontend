@@ -1,7 +1,34 @@
 <app-navbar></app-navbar>
 
-<div class="px-3 mt-3">
-    <div class="card text-white bg-primary ">
+<div class="container-fluid">
+    <div class="card bg-primary  text-white m-3">
+        <div class="card-header">
+            <h5>Metricas generales de Actividad en la plataforma</h5>
+        </div>
+        <div class="card-body">
+            <div class="container text-center">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <canvas baseChart class="userActionschart" [data]="activityfordaysbarChartData"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [type]="lineChartType">
+                        </canvas>
+                    </div>
+                    <div class="col-sm-6">
+                        <canvas baseChart class="userActionschart" [data]="activityforhoursbarChartData"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [type]="lineChartType">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="card text-white bg-primary m-3">
         <div class="card-header">Busqueda de metricas por estudiante</div>
         <div class="card-body">
             <label for="1">Ingrese el Nombre de usuario a Buscar</label>
@@ -20,8 +47,8 @@
 
 </div>
 
-<div class="container-fluid px-3 mt-3 ">
-    <div class="card bg-primary">
+<div class="container-fluid">
+    <div class="card bg-primary m-3">
         <div class="card-header">
             <h1>Busqueda de Sospechosos</h1>
         </div>
@@ -41,7 +68,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="courseselector" class="form-label mt-3">Respuesta</label>
-                        <ng-select [(ngModel)]="selectedAnswer" id="courseselector">
+                        <ng-select [(ngModel)]="selectedAnswer" id="courseselector" (change)="onAnswerChange()">
                             <ng-option *ngFor="let answer of answers" [value]="answer">{{answer}}</ng-option>
                         </ng-select>
                         <small id="emailHelp" class="form-text text-muted">Selecciona un curso para continuar</small>
@@ -113,6 +140,15 @@
     </div>
 </div>
 
+<div class="container-fluid px-3 mt-3 ">
+    <div class="card bg-primary">
+        <div class="card-header">
+            <h1>Busqueda de Sospechosos</h1>
+        </div>
+        <div class=" card-body">
+        </div>
+    </div>
+</div>
 
 
 

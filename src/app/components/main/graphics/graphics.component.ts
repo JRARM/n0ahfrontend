@@ -11,8 +11,7 @@ import { GraphicsService } from 'src/app/services/graphics.service';
 export class GraphicsComponent implements OnInit {
 
   //global var
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
-  @ViewChild(BaseChartDirective) userActionschart: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   private incidents: any;
   private userActions: any;
   public selecteduser: any;
@@ -25,6 +24,31 @@ export class GraphicsComponent implements OnInit {
   public dates = [];
   private userName: any;
   //ng select test
+  //general charts options
+  public generalChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    scales: {
+      x: {},
+      y: {
+        beginAtZero: true
+      }
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      },
+    },
+    elements: {
+      line: {
+      },
+    },
+  };
+
+
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
@@ -53,15 +77,7 @@ export class GraphicsComponent implements OnInit {
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {},
-      y: {
-        type: 'time',
-        time: {
-          unit: 'day',
-          displayFormats: {
-            day: 'MMM D',
-          }
-        }
-      },
+      y: {},
     },
     plugins: {
       legend: {
@@ -79,9 +95,27 @@ export class GraphicsComponent implements OnInit {
     },
   };
 
-
+  public lineChartType: ChartType = 'line';
   public barChartType: ChartType = 'bar';
   public barChartPlugins = [DataLabelsPlugin];
+
+  //activity for day 
+  public activityfordaysbarChartData: ChartData<'line'> = {
+    labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+    datasets: [
+      { data: [0, 0, 0, 0, 0, 0, 0, 0], label: 'Total Acciones por dia', borderColor: 'rgba(100, 200, 100, 1)' }
+    ],
+  };
+
+  public activityforhoursbarChartData: ChartData<'bar'> = {
+    labels: ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00',
+      '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'
+      , '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+    datasets: [
+      { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'Total Acciones por Hora', borderColor: 'rgba(100, 200, 100, 1)' }
+    ],
+  };
+
 
   //useractions barchartdata init
   public UserActionsbarChartData: ChartData<'bar'> = {
@@ -95,7 +129,7 @@ export class GraphicsComponent implements OnInit {
   public SuspectsbarChartData: ChartData<'bar'> = {
     labels: ['0', '0', '0', '0', '0', '0', '0'],
     datasets: [
-      { data: [0, 0, 0, 0, 0, 0], label: 'Sospechosos' }
+      { data: [0, 0, 0, 0, 0, 0], label: 'Incidencia de Usuarios sospechosos' }
     ],
   };
   public data = [
@@ -111,18 +145,64 @@ export class GraphicsComponent implements OnInit {
   };
   constructor(private graphicsService: GraphicsService) { }
   ngOnInit(): void {
+    this.getGeneralActivity();
     this.getincidentss();
     this.getAllUsers();
     this.getAllCourses();
   }
 
+  getAllSuspects(queryData: any): void {
+    this.graphicsService.getAllSuspects(queryData).subscribe(data => {
+      console.log(data);
+      this.SuspectsbarChartData = {
+        labels: data.usernames,
+        datasets: [
+          { data: data.timeincidents, label: 'Incidencia de Usuarios sospechosos' },],
+      };
+    })
+
+
+  }
+
+
+  getGeneralActivity(): void {
+    this.graphicsService.getactivityforday().subscribe(data => {
+      console.log(data);
+
+      this.activityfordaysbarChartData = {
+        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+        datasets: [
+          { data: [data[0].count, data[1].count, data[2].count, data[3].count, data[4].count, data[5].count, data[6].count], label: 'Total Acciones por Dia', borderColor: 'rgba(100, 200, 100, 1)' }
+        ],
+      };
+    });
+
+    this.graphicsService.getactivitybyhour().subscribe(data => {
+      console.log(data);
+      this.activityforhoursbarChartData = {
+        labels: ['00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00',
+          '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'
+          , '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+        datasets: [
+          {
+            data: [data[0].count, data[1].count, data[2].count, data[3].count,
+            data[4].count, data[5].count, data[6].count, data[7].count, data[8].count, data[9].count
+              , data[10].count, data[11].count, data[12].count, data[13].count, data[14].count, data[15].count, data[16].count, data[17].count
+              , data[18].count, data[19].count, data[20].count, data[21].count, data[22].count, data[23].count], label: 'Total Acciones por Hora'
+
+            , borderColor: 'rgba(100, 200, 100, 1)'
+
+          }
+        ],
+      };
+    });
+
+  }
+
+
   searchSuspects(): void {
     console.log("searching suscpects");
-    this.SuspectsbarChartData = {
-      labels: ['ana', 'pedro', 'luis', 'andres', 'juan', 'perez', 'raiz'],
-      datasets: [
-        { data: [3, 4, 3, 4, 3, 4], label: 'ana' },],
-    };
+    this.getAllSuspects({ course: this.selectedCourse, answer: this.selectedAnswer, date: this.selectedDate });
   }
 
   onChangeSelect(): void {
@@ -134,13 +214,16 @@ export class GraphicsComponent implements OnInit {
 
   onChangeCourse(): void {
     this.getallanswerCourse(this.selectedCourse);
-    this.getalldatesCourse(this.selectedCourse);
   }
 
-  private getalldatesCourse(course: any): void {
-    this.graphicsService.getAllDatesCourse({ course: course }).subscribe(data => {
+  onAnswerChange(): void {
+    this.getalldatesCourse({ course: this.selectedCourse, answer: this.selectedAnswer });
+  }
+
+  private getalldatesCourse(queryData: any): void {
+    this.graphicsService.getAllDatesCourse(queryData).subscribe(data => {
       console.log(data);
-      this.dates = data.courseDates;
+      this.dates = data;
 
     })
   }
@@ -172,10 +255,18 @@ export class GraphicsComponent implements OnInit {
   private getUserActivity(name: string): void {
     this.graphicsService.getUserAction({ userName: name }).subscribe(data => {
       console.log(data);
-      this.UserActionsbarChartData.labels = data.names;
-      this.UserActionsbarChartData.datasets[0].data = data.counts;
-      this.UserActionsbarChartData.datasets[0].label = 'Acciones de Usuario ' + this.selecteduser;
-      this.userActionschart?.update();
+      this.UserActionsbarChartData = {
+        labels: data.names,
+        datasets: [
+          { data: data.counts, label: 'Acciones de Usuario ' + this.selecteduser }
+        ],
+      };
+
+
+      // this.UserActionsbarChartData.labels = data.names;
+      // this.UserActionsbarChartData.datasets[0].data = data.counts;
+      // this.UserActionsbarChartData.datasets[0].label = 'Acciones de Usuario ' + this.selecteduser;
+      // this.chart?.update();
     });
   }
 

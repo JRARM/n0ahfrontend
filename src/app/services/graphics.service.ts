@@ -14,7 +14,24 @@ export class GraphicsService {
   }
 
   getUserAction(userName: any): Observable<any> {
-    return this.http.post<any>(this.apiUrl + "charts/getuseractions", userName)
+    return this.http.post<any>(this.apiUrl + "charts/getuseractions", userName);
+  }
+
+
+  getallusers(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "charts/getallusers");
+  }
+
+  getAllCourses(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "charts/getallcourses");
+  }
+
+  getAllAnswersCourse(course: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "charts/getallanswersbycourse", course);
+  }
+
+  getAllDatesCourse(course: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + "charts/getalldatesbycourse", course);
   }
 
 }

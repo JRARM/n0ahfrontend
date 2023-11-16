@@ -7,18 +7,18 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isloged">
                     <a class="nav-link" routerLink="/graficas">Gráficas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/iniciarsesion">Iniciar Sesión</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/registrarse">Registro</a>
+                    <a class="nav-link" routerLink="/registrarse">Cerrar Sesion</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" routerLink="/olvidecontrasena">Olvidé Contraseña</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

@@ -1,109 +1,112 @@
 <app-navbar></app-navbar>
-
-<div class="container-fluid">
-    <div class="card bg-primary  text-white m-3">
-        <div class="card-header">
-            <h5>Metricas generales de Actividad en la plataforma</h5>
-        </div>
-        <div class="card-body">
-            <div class="container text-center">
-                <div class="row align-items-center">
-                    <div class="col-sm-6">
-                        <canvas baseChart class="userActionschart" [data]="activityfordaysbarChartData"
-                            [options]="barChartOptions" [plugins]="barChartPlugins" [type]="lineChartType">
-                        </canvas>
-                    </div>
-                    <div class="col-sm-6">
-                        <canvas baseChart class="userActionschart" [data]="activityforhoursbarChartData"
-                            [options]="barChartOptions" [plugins]="barChartPlugins" [type]="lineChartType">
-                        </canvas>
+<section class="card text-white rounded blur-bg custom-form-bg mb-3">
+    <div class="container-fluid">
+        <div class="card text-white rounded blur-bg custom-form-bg  text-white m-3">
+            <div class="card-header">
+                <h5>Graficas generales de Actividad en la plataforma</h5>
+            </div>
+            <div class="card-body">
+                <div class="container text-center">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <canvas baseChart class="userActionschart" [data]="activityfordaysbarChartData"
+                                [options]="barChartOptions" [plugins]="barChartPlugins" [type]="lineChartType">
+                            </canvas>
+                        </div>
+                        <div class="col-sm-6">
+                            <canvas baseChart class="userActionschart" [data]="activityforhoursbarChartData"
+                                [options]="barChartOptions" [plugins]="barChartPlugins" [type]="lineChartType">
+                            </canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-<div class="container-fluid">
-    <div class="card text-white bg-primary m-3">
-        <div class="card-header">Busqueda de metricas por estudiante</div>
-        <div class="card-body">
-            <label for="1">Ingrese el Nombre de usuario a Buscar</label>
-            <br>
-            <ng-select [(ngModel)]=" selecteduser" (change)="onChangeSelect()">
-                <ng-option *ngFor="let user of users" [value]="user">{{user}}</ng-option>
-            </ng-select>
-            <div style="width: 700px; height: 400px;">
-                <canvas baseChart class="userActionschart" [data]="UserActionsbarChartData" [options]="barChartOptions"
-                    [plugins]="barChartPlugins" [type]="barChartType">
-                </canvas>
 
             </div>
         </div>
     </div>
 
-</div>
 
-<div class="container-fluid">
-    <div class="card bg-primary m-3">
-        <div class="card-header">
-            <h1>Busqueda de Sospechosos</h1>
-        </div>
-        <div class=" card-body">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label for="courseselector" class="form-label mt-3">Curso</label>
-                        <ng-select [(ngModel)]="selectedCourse" id="courseselector" (change)="onChangeCourse()">
-                            <ng-option *ngFor="let course of courses" [value]="course">{{course}}</ng-option>
-                        </ng-select>
-                        <small id="emailHelp" class="form-text text-muted">Selecciona un curso para continuar</small>
 
-                        {{ selectedCourse }}
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label for="courseselector" class="form-label mt-3">Respuesta</label>
-                        <ng-select [(ngModel)]="selectedAnswer" id="courseselector" (change)="onAnswerChange()">
-                            <ng-option *ngFor="let answer of answers" [value]="answer">{{answer}}</ng-option>
-                        </ng-select>
-                        <small id="emailHelp" class="form-text text-muted">Selecciona un curso para continuar</small>
+    <div class="container-fluid">
+        <div class="card text-white rounded blur-bg custom-form-bg m-3">
+            <div class="card-header">Busqueda de metricas por estudiante</div>
+            <div class="card-body">
+                <label for="1">Ingrese el Nombre de usuario a Buscar</label>
+                <br>
+                <ng-select [(ngModel)]=" selecteduser" (change)="onChangeSelect()">
+                    <ng-option *ngFor="let user of users" [value]="user">{{user}}</ng-option>
+                </ng-select>
+                <div style="width: 700px; height: 400px;">
+                    <canvas baseChart class="userActionschart" [data]="UserActionsbarChartData"
+                        [options]="barChartOptions" [plugins]="barChartPlugins" [type]="barChartType">
+                    </canvas>
 
-                        {{ selectedAnswer }}
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label for="courseselector" class="form-label mt-3">Fecha</label>
-                        <ng-select [(ngModel)]="selectedDate" id="courseselector">
-                            <ng-option *ngFor="let date of dates" [value]="date">{{date}}</ng-option>
-                        </ng-select>
-                        <small id="emailHelp" class="form-text text-muted">Selecciona una fecha para continuar</small>
-
-                        {{ selectedDate }}
-                    </div>
-                </div>
-
-                <div class="col-sm-12">
-                    <button class="btn btn-secondary" (click)="searchSuspects()">Buscar</button>
-                </div>
-
-                <div class="col-sm-12">
-                    <div style="width: 700px; height: 400px;">
-                        <canvas baseChart [data]="SuspectsbarChartData" [options]="suspectsChartOptions"
-                            [plugins]="barChartPlugins" [type]="barChartType">
-                        </canvas>
-
-                    </div>
                 </div>
             </div>
+        </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="card text-white rounded blur-bg custom-form-bg m-3">
+            <div class="card-header">
+                <h1>Busqueda de Sospechosos</h1>
+            </div>
+            <div class=" card-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="courseselector" class="form-label mt-3">Curso</label>
+                            <ng-select [(ngModel)]="selectedCourse" id="courseselector" (change)="onChangeCourse()">
+                                <ng-option *ngFor="let course of courses" [value]="course">{{course}}</ng-option>
+                            </ng-select>
+                            <small id="emailHelp" class="form-text text-muted">Selecciona un curso para
+                                continuar</small>
+
+                            {{ selectedCourse }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="courseselector" class="form-label mt-3">Respuesta</label>
+                            <ng-select [(ngModel)]="selectedAnswer" id="courseselector" (change)="onAnswerChange()">
+                                <ng-option *ngFor="let answer of answers" [value]="answer">{{answer}}</ng-option>
+                            </ng-select>
+                            <small id="emailHelp" class="form-text text-muted">Selecciona un curso para
+                                continuar</small>
+
+                            {{ selectedAnswer }}
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label for="courseselector" class="form-label mt-3">Fecha</label>
+                            <ng-select [(ngModel)]="selectedDate" id="courseselector">
+                                <ng-option *ngFor="let date of dates" [value]="date">{{date}}</ng-option>
+                            </ng-select>
+                            <small id="emailHelp" class="form-text text-muted">Selecciona una fecha para
+                                continuar</small>
+
+                            {{ selectedDate }}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <button class="btn btn-secondary" (click)="searchSuspects()">Buscar</button>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div style="width: 700px; height: 400px;">
+                            <canvas baseChart [data]="SuspectsbarChartData" [options]="suspectsChartOptions"
+                                [plugins]="barChartPlugins" [type]="barChartType">
+                            </canvas>
+
+                        </div>
+                    </div>
+                </div>
 
 
-            <!-- <div class="form-group">
+                <!-- <div class="form-group">
                 <div class="form-group">
                     <label for="courseselector" class="form-label mt-4">Curso</label>
                     <ng-select [(ngModel)]="selectedCourse" id="courseselector" (change)="onChangeCourse()">
@@ -136,23 +139,10 @@
 
             </div> -->
 
+            </div>
         </div>
     </div>
-</div>
-
-<div class="container-fluid px-3 mt-3 ">
-    <div class="card bg-primary">
-        <div class="card-header">
-            <h1>Busqueda de Sospechosos</h1>
-        </div>
-        <div class=" card-body">
-        </div>
-    </div>
-</div>
-
-
-
-<!-- <section>
+    <!-- <section>
     <div class="card text-white px-3">
         <div class="card-header">
             <h2>Busqueda de metricas por estudiante</h2>
@@ -176,3 +166,4 @@
 
     </div>
 </section> -->
+</section>

@@ -1,2 +1,121 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+body {
+    background: #0F2027;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+
+
+    /* Para colocar una imagen como fondo
+    background-image: url("../img/Fondo4.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+    */
+
+    .rounded-button {
+        border-radius: 15px;
+        /* Ajusta este valor para cambiar la cantidad de redondeo */
+    }
+
+    .custom-button {
+        background-color: #2166a3;
+        /* Cambia este valor por el color que desees */
+        color: white;
+        /* Cambia el color del texto para que sea legible en el nuevo fondo */
+        border: none;
+        /* Elimina el borde para que se vea más limpio */
+        border-radius: 10px;
+        padding: 10px 20px;
+        /* Ajusta el espaciado interior para que el texto esté centrado */
+    }
+
+
+    .logo {
+        width: 40%;
+    }
+
+    .logo2 {
+        top: 20px;
+        /* Ajusta la distancia desde la parte superior según sea necesario */
+        left: 100%;
+        /* Centra horizontalmente el logo */
+        transform: auto;
+        /* Centra horizontalmente el logo */
+        width: 100px;
+        /* Ajusta el ancho del logo según sea necesario */
+        z-index: 1;
+        /* Asegura que el logo esté por encima del contenido */
+    }
+
+    .bg-black {
+        background: #090909;
+    }
+
+    .btn-center {
+        text-align: center;
+    }
+
+    .navbar-brand {
+        font-weight: 900;
+        font-size: 25px;
+    }
+
+    /* Estilos para centrar el botón */
+    .btn-center {
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Estilos para el contenedor con el fondo desenfocado */
+    .blur-bg {
+        position: relative;
+        overflow: hidden;
+    }
+
+
+    .blur-bg::before {
+        content: '';
+        background-image: url("/../../../../assets/img/Blur.png");
+        /* Reemplaza "/img/fondo.jpg" con la ruta de tu imagen de fondo */
+        background-size: cover;
+        background-position: center;
+        filter: blur(100px);
+        /* Ajusta el valor de "5px" según el nivel de desenfoque deseado */
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    /* Estilos para el fondo del formulario */
+    .custom-form-bg {
+        background-color: rgba(57, 191, 191, 0.09);
+        /* Ajusta el valor de "0.9" para la opacidad deseada */
+        backdrop-filter: blur(50px);
+        /* Ajusta el valor de "5px" según el nivel de desenfoque deseado */
+    }
+
+    /* Estilos para el contenido principal */
+    main {
+        min-height: 100vh;
+        /* Fuerza al contenido principal a ocupar al menos el 100% del alto de la ventana (viewport) */
+    }
+
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+    }
+}
+
+.navbar-nav a {
+    color: white;
+}

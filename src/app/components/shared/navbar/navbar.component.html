@@ -10,15 +10,16 @@
                 <li class="nav-item" *ngIf="isloged">
                     <a class="nav-link" routerLink="/graficas">Gráficas</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!isloged">
                     <a class="nav-link" routerLink="/iniciarsesion">Iniciar Sesión</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/">Cerrar Sesion</a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="islogedAdministrator">
                     <a class="nav-link" routerLink="/registrarse">Registrar Docente</a>
                 </li>
+                <li class="nav-item" *ngIf="isloged">
+                    <a class="nav-link" routerLink="/" (click)="logout()">Cerrar Sesion</a>
+                </li>
+
             </ul>
         </div>
     </div>

@@ -17,24 +17,26 @@
                     <div class="mb-3">
                         <!--       <label for="name" class="form-label text-white">Nombre</label> -->
                         <input type="text" class="rounded-4 form-control text-black custom-input bg-" id="name"
-                            name="name" placeholder="Nombre Docente" value="" />
+                            name="name" placeholder="Nombre Docente" value="" [(ngModel)]="registerdata.name" />
                     </div>
                     <div class="mb-3">
                         <!--      <label for="email" class="form-label text-white">Correo</label> -->
                         <input type="email" class="rounded-4 form-control text-black custom-input" id="email"
-                            name="email" placeholder="Correo Docente" value="" />
+                            name="email" placeholder="Correo Docente" value="" [(ngModel)]="registerdata.email" />
                     </div>
                     <div class="mb-3">
                         <!--       <label for="password" class="form-label text-white">Contraseña</label> -->
                         <input type="password" class="rounded-4 form-control text-black custom-input" id="password"
-                            name="password" placeholder="Contraseña" value="" />
+                            name="password" placeholder="Contraseña" value="" [(ngModel)]="registerdata.password" />
                     </div>
                     <div class="mb-3">
                         <!--      <label for="confirm_password" class="form-label text-white">Confirme su contraseña</label> -->
                         <input type="password" class="rounded-4 form-control text-black custom-input"
-                            id="confirm_password" name="confirm_password" placeholder="Confirma contraseña" value="" />
+                            id="confirm_password" name="confirm_password" placeholder="Confirma contraseña" value=""
+                            [(ngModel)]="confirmpassword" />
                     </div>
-                    <button class="custom-button btn btn-secondary btn-block btn-center rounded-button">
+                    <button class="custom-button btn btn-secondary btn-block btn-center rounded-button"
+                        (click)="onSubmit()">
                         <i class="fas fa-user"></i> Registrar Docente
                     </button>
                 </div>

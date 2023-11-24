@@ -16,14 +16,17 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log("carga elemento");
+    //console.log("carga elemento");
   }
 
   onSubmit() {
-    console.log("estoy enviando", this.userLogin.email, this.userLogin.password);
+    //console.log("estoy enviando", this.userLogin.email, this.userLogin.password);
     try {
-      this.authService.login(this.userLogin).subscribe(response => {
-        console.log(response);
+      this.authService.login(this.userLogin).subscribe((response: any) => {
+        //console.log(response);
+        this.authService.getuserInfo(response.token).subscribe((responseinfo: any) => {
+          this.authService.logins(responseinfo);
+        });
         this.router.navigate(['/graficas'])
       })
     } catch (error) {

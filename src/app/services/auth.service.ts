@@ -32,10 +32,12 @@ export class AuthService {
 
   logins(responseinfo: any) {
     // Lógica de inicio de sesión, por ejemplo, verificar credenciales.
+    this.setUserInfoLocal(responseinfo);
     this.isAuthenticatedSubject.next(responseinfo);
   }
 
   logout() {
+    localStorage.removeItem('userInfo');
     this.isAuthenticatedSubject.next({
       email: "",
       uid: "",
@@ -44,23 +46,27 @@ export class AuthService {
   }
 
   isAuthenticatedUser() {
+    let userinfolocal = localStorage.getItem('userInfo');
+    if (userinfolocal) {
+      this.isAuthenticatedSubject.next(JSON.parse(userinfolocal));
+      console.log(userinfolocal);
+    }
     return this.isAuthenticatedSubject.asObservable();
   }
 
 
 
 
-  // setUserInfoLocal(userinfo: any): boolean {
-  //   let userinfolocal = localStorage.getItem('userInfo');
-  //   if (userinfolocal) {
-  //     this.isAuthenticated = true;
-  //     return false;
-  //   } else {
-  //     localStorage.setItem('userInfo', JSON.stringify(userinfo));
-  //     return true;
-  //   }
+  setUserInfoLocal(userinfo: any) {
+    let userinfolocal = localStorage.getItem('userInfo');
+    if (userinfolocal) {
+      this.isAuthenticatedSubject.next(JSON.parse(userinfolocal));
+    } else {
+      localStorage.setItem('userInfo', JSON.stringify(userinfo));
+      console.log("guardando localuserifno")
+    }
 
-  // }
+  }
 
   //  isAuthenticatedUser() {
   //   return this.isAuthenticated;

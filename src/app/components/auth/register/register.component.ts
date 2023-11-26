@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
   onSubmit() {
     if (this.registerdata.password == this.confirmpassword) {

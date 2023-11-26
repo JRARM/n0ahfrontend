@@ -18,12 +18,15 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authservice.isAuthenticatedUser().subscribe((authStatus) => {
-      console.log(authStatus);
+      console.log("en el navbar comprobacion de datos", authStatus);
       if (authStatus.role) {
+        console.log("entrando a administrador");
         this.islogedAdministrator = true;
         this.isloged = true;
       } else {
-        if (authStatus.uid != "") {
+        
+        if (authStatus.uid !== "") {
+          console.log("entrando a docente");
           this.isloged = true;
         }
       }

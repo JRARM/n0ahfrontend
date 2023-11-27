@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 AuthService
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,7 @@ export class NavbarComponent implements OnInit {
         this.islogedAdministrator = true;
         this.isloged = true;
       } else {
-        
+
         if (authStatus.uid !== "") {
           console.log("entrando a docente");
           this.isloged = true;
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     console.log("cerrando sesion");
     this.authservice.logout();
+    Swal.fire('Cierre de sesion', 'El cierre de sesion se realizo Correctamente.', 'success')
   }
 
 

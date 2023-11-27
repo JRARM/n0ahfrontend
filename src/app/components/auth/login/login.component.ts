@@ -2,6 +2,7 @@ import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
           this.authService.logins(responseinfo);
         });
         this.router.navigate(['/graficas'])
+        Swal.fire('Inicio de sesion', 'Inicio de sesion correcto', 'success');
       })
     } catch (error) {
       console.log(error);
